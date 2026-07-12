@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Soko merchant workspace">
+<title>Soko Merchant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="merchant.css">
+<link rel="stylesheet" href="merchant-auth.css">
+</head>
+<body>
+<aside class="sidebar">
+<a class="logo" href="index.html">
+<span>s</span>Soko</a>
+<small>MERCHANT</small>
+<nav>
+<button class="active" data-view="overview">
+<i>⌂</i>Overview</button>
+<button data-view="orders">
+<i>▤</i>Orders <b id="orderBadge">0</b>
+</button>
+<button data-view="products">
+<i>◇</i>Products</button>
+<button data-view="store">
+<i>◎</i>Store settings</button>
+<a class="notification-link" href="notifications.html"><i>●</i> Notifications</a>
+<a class="notification-link" href="returns.html"><i>↩</i> Returns & refunds</a>
+<a class="notification-link" href="security.html"><i>⌾</i> Security</a>
+</nav>
+<div class="sidebar-bottom">
+<div class="help-card">
+<b>Need help?</b>
+<p>Read the merchant guide or contact Soko support.</p>
+<button id="helpButton">Get support ↗</button>
+</div>
+<button class="logout" id="logoutButton">Sign out</button>
+<a href="index.html">← View marketplace</a>
+</div>
+</aside>
+<header class="mobile-header">
+<a class="logo" href="index.html">
+<span>s</span>Soko</a>
+<button id="menuButton">Menu</button>
+</header>
+<main class="dashboard">
+<header class="topbar">
+<div>
+<span class="kicker">MERCHANT WORKSPACE</span>
+<h1 id="pageTitle">Good afternoon, Amara.</h1>
+</div>
+<div class="profile">
+<span>AO</span>
+<div>
+<strong id="profileName">Amara Organics</strong>
+<small id="profileMarket">Lagos, Nigeria</small>
+</div>
+</div>
+</header>
+<div id="view">
+</div>
+</main>
+<div class="backdrop" id="backdrop">
+<section class="modal" role="dialog" aria-modal="true">
+<button class="close" id="modalClose">×</button>
+<div id="modalContent">
+</div>
+</section>
+</div>
+<div class="toast" id="toast">
+</div>
+<script src="merchant.js">
+</script>
+</body>
+</html>

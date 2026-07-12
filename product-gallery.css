@@ -1,0 +1,1 @@
+.thumbnails{display:flex;gap:8px;margin-top:10px}.thumbnails button{width:72px;border:2px solid transparent;background:none;padding:0;cursor:pointer}.thumbnails button:hover{border-color:var(--orange)}.thumbnails img{width:100%;aspect-ratio:1;object-fit:cover;display:block}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your orders — Soko</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="account.css">
+</head>
+<body>
+<header>
+<a class="logo" href="index.html">
+<span>s</span>Soko</a>
+<nav>
+<a href="notifications.html">Notifications</a>
+<a href="returns.html">Returns</a>
+<a href="security.html">Security</a>
+<a href="index.html#marketplace">Continue shopping</a>
+<button id="logout">Sign out</button>
+</nav>
+</header>
+<main>
+<span class="kicker">BUYER ACCOUNT</span>
+<h1>Your orders</h1>
+<p class="intro">Track deliveries and ask Soko for help when something goes wrong.</p>
+<div id="orders">
+</div>
+</main>
+<div class="backdrop" id="backdrop">
+<section class="modal">
+<button id="close">×</button>
+<div id="modalContent">
+</div>
+</section>
+</div>
+<div class="toast" id="toast">
+</div>
+<script src="account.js">
+</script>
+</body>
+</html>
