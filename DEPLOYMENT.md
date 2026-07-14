@@ -31,6 +31,14 @@ The health response must contain `"ok":true`. Create a buyer and merchant test a
 
 Keep the `data/` directory on persistent storage. It contains the SQLite database and encrypted private merchant documents. Back up both together; changing `DOCUMENT_ENCRYPTION_KEY` makes existing identity documents unreadable.
 
+Create a consistent local backup with:
+
+```bash
+npm run backup
+```
+
+For production, schedule this command on a trusted machine or backup worker and copy the resulting backup directory to separate storage. Do not store backups only on the same Render disk.
+
 ## Domain and Resend
 
 Resend only verifies the sending domain. The staging hostname still needs to point to the application host, and `APP_BASE_URL` must use that HTTPS hostname so verification and password-reset links open the deployed app.
