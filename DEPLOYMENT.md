@@ -16,6 +16,7 @@ Soko is a Node server with a SQLite database and encrypted merchant documents. T
    - `EMAIL_PROVIDER=resend`, `RESEND_API_KEY`, and `EMAIL_FROM`
    - `EMAIL_AUTO_FLUSH=false` until a scheduled/admin outbox flush is configured
    - `SOKO_DATA_DIR=/var/data` (the host's persistent disk mount path)
+   - `BACKUP_INTERVAL_HOURS=24` to create a daily consistent backup on that disk
 
 ## Start and verify
 
@@ -37,7 +38,7 @@ Create a consistent local backup with:
 npm run backup
 ```
 
-For production, schedule this command on a trusted machine or backup worker and copy the resulting backup directory to separate storage. Do not store backups only on the same Render disk.
+The production server can run this automatically with `BACKUP_INTERVAL_HOURS=24`. These backups are still on the Render disk, so also copy them to separate storage for disaster recovery. Do not treat same-disk backups as an off-site backup.
 
 ## Domain and Resend
 
