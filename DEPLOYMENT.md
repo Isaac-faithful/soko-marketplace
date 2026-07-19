@@ -17,6 +17,10 @@ Soko is a Node server with a SQLite database and encrypted merchant documents. T
    - `EMAIL_AUTO_FLUSH=false` until a scheduled/admin outbox flush is configured
    - `SOKO_DATA_DIR=/var/data` (the host's persistent disk mount path)
    - `BACKUP_INTERVAL_HOURS=24` to create a daily consistent backup on that disk
+   - `BACKUP_S3_ENDPOINT=https://<account-id>.r2.cloudflarestorage.com`
+   - `BACKUP_S3_BUCKET=soko-production-backups`
+   - `BACKUP_S3_REGION=auto`
+   - `BACKUP_S3_ACCESS_KEY_ID` and `BACKUP_S3_SECRET_ACCESS_KEY` (secret Render variables)
 
 ## Start and verify
 
@@ -38,7 +42,7 @@ Create a consistent local backup with:
 npm run backup
 ```
 
-The production server can run this automatically with `BACKUP_INTERVAL_HOURS=24`. These backups are still on the Render disk, so also copy them to separate storage for disaster recovery. Do not treat same-disk backups as an off-site backup.
+The production server can run this automatically with `BACKUP_INTERVAL_HOURS=24`. When the S3-compatible variables are configured, each backup is also uploaded under `soko/<timestamp>/` in the private bucket. The backup command fails if only some off-site variables are configured, so a partially configured backup cannot look successful.
 
 ## Domain and Resend
 
