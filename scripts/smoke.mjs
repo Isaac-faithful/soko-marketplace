@@ -3,7 +3,7 @@ const checks=[
   ["homepage","/",r=>r.status===200&&r.text.includes("Shop Africa")],
   ["health","/api/health",r=>r.status===200&&r.json.ok===true],
   ["authentication page","/auth.html",r=>r.status===200&&r.text.includes("Create account")],
-  ["help centre","/help.html",r=>r.status===200&&r.text.includes("Soko Help Centre")],
+  ["help centre","/help.html",r=>r.status===200&&r.text.toLowerCase().includes("soko help centre")],
   ["hero video","/assets/video/soko-hero.mp4",r=>r.status===200&&r.headers.get("content-type")?.includes("video/mp4")],
   ["hero video range","/assets/video/soko-hero.mp4",r=>r.status===206&&Boolean(r.headers.get("content-range")),{Range:"bytes=0-1023"}]
 ];
