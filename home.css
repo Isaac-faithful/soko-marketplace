@@ -7,3 +7,19 @@
 .hero h1{color:#fff;text-shadow:0 3px 24px rgba(0,0,0,.3)}
 .hero>p{color:rgba(255,255,255,.92);text-shadow:0 1px 12px rgba(0,0,0,.28)}
 .hero-note{color:rgba(255,255,255,.86);text-shadow:0 1px 10px rgba(0,0,0,.28)}
+/* Small-screen layout refinements */
+@media(max-width:600px){
+  .home-header{height:auto;min-height:68px;padding:12px 18px;gap:12px}
+  .logo{font-size:24px;gap:6px}.logo span{width:29px;height:29px}
+  .header-actions{gap:8px;font-size:12px;white-space:nowrap}.header-actions .button{padding:10px 12px}
+  .hero{min-height:640px;padding:66px 20px 42px;justify-content:center}
+  .hero-bg{object-position:58% center}.hero-overlay{background:linear-gradient(180deg,rgba(8,35,28,.58) 0%,rgba(8,35,28,.68) 72%,rgba(8,35,28,.82) 100%)}
+  .hero h1{font-size:clamp(43px,14vw,64px);letter-spacing:-3px;margin:16px auto 20px}.hero>p{font-size:16px;line-height:1.55}
+  .hero-actions{width:100%;margin:26px 0 32px;gap:10px}.hero-actions .button{width:100%;padding:14px 16px}
+  .video-section{padding:62px 20px;gap:34px}.video-copy h2{font-size:38px;letter-spacing:-2px}.explainer-video{min-height:300px;padding:16px}
+  .section{padding:64px 20px}.section h2{letter-spacing:-2px}.audience{padding:26px;min-height:240px}.audience h3{margin:34px 0 10px}
+  .step{padding:24px;min-height:0}.step h3{margin:28px 0 10px}.country{padding:24px;min-height:0}
+  .ribbon{padding:20px;gap:8px;text-align:center}.cta{padding:58px 20px}.cta h2{letter-spacing:-2px}
+  .home-footer{padding:38px 20px;gap:24px}
+}
+@media(max-width:380px){.header-actions>a:first-child{display:none}.header-actions .button{padding:10px}.hero{min-height:600px}.hero h1{font-size:42px}}
