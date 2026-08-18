@@ -110,7 +110,7 @@ npm run check
 
 ## Paystack test adapter
 
-Soko defaults to the local development provider. The Paystack adapter supports transaction initialization, signed webhooks, transfer recipients, transfers, refunds, balance checks, and transaction/transfer verification calls. Merchant account numbers are sent server-side to the provider; Soko stores only the provider recipient token and final four digits.
+Soko defaults to the local development provider. The Paystack adapter supports transaction initialization with a transaction-specific flat split, merchant subaccounts, signed webhooks, refunds, balance checks, and transaction/transfer verification calls. Merchant account numbers are sent server-side to the provider; Soko stores only the provider subaccount token and final four digits.
 
 Configure Paystack test mode with environment variables based on `.env.example`:
 
@@ -127,7 +127,7 @@ Set the Paystack webhook URL to:
 https://your-public-test-url.example/api/webhooks/paystack
 ```
 
-Soko verifies `x-paystack-signature` using HMAC SHA-512 before processing any webhook. In Paystack mode, local payment simulation is disabled. Buyers receive Paystack's authorization URL and merchant dispatch uses the Paystack Transfers API when a recipient is configured.
+Soko verifies `x-paystack-signature` using HMAC SHA-512 before processing any webhook. In Paystack mode, local payment simulation is disabled. Buyers receive Paystack's authorization URL and the checkout includes a dynamic flat split: the merchant receives the exact calculated merchant share (product value minus Soko commission plus delivery), while Soko receives the remaining commission. Paystack's split settlement occurs when the payment succeeds; the fulfilment review screen records the settlement and does not send a second transfer.
 
 Automatic refunds are allowed only before merchant payout submission. Repeated refund requests are idempotent. Once settlement has been submitted, Soko blocks automatic refunding until the merchant payout is recovered or reversed.
 
