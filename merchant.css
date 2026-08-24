@@ -114,3 +114,4 @@ button,input,select,textarea{font:inherit}
 .document-grid small{display:block;color:var(--muted);font-weight:400}
 .primary:disabled{opacity:.45;cursor:not-allowed;transform:none}
 @media(max-width:600px){.document-grid{grid-template-columns:1fr}}
+.stats .stat{cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}.stats .stat:hover,.stats .stat:focus-visible{transform:translateY(-3px);box-shadow:0 8px 20px rgba(24,57,47,.12);outline:2px solid var(--orange);outline-offset:2px}
