@@ -141,7 +141,7 @@ An administrator must verify carrier collection in the Trust Console. The server
 
 Merchants complete legal identity, phone, business type and registration, address, and ID details. They upload government ID, business registration, and proof of address, then verify their payout account before submitting for Soko review. Unapproved merchants remain invisible to buyers, cannot receive orders, and their products cannot be approved.
 
-Identity files are limited to PDF, JPG, or PNG under 650 KB. Soko encrypts each file with AES-256-GCM inside the ignored `data/private/merchant-documents` directory. The static server denies every request under `/data`; only an authenticated administrator can decrypt and inspect a document through its protected endpoint. Set and securely back up `DOCUMENT_ENCRYPTION_KEY` in every deployed environment. Production startup fails when this key is missing.
+Identity files are limited to PDF, JPG, or PNG under 5 MB. Soko encrypts each file with AES-256-GCM inside the ignored `data/private/merchant-documents` directory. The static server denies every request under `/data`; only an authenticated administrator can decrypt and inspect a document through its protected endpoint. Set and securely back up `DOCUMENT_ENCRYPTION_KEY` in every deployed environment. Production startup fails when this key is missing.
 
 ## Notifications and development email
 
