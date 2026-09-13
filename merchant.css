@@ -7,6 +7,7 @@ button,input,select,textarea{font:inherit}
 .sidebar{position:fixed;inset:0 auto 0 0;width:245px;background:#17362e;color:white;padding:28px 20px;display:flex;flex-direction:column;z-index:20}
 .sidebar .logo{color:white;margin-bottom:8px}
 .sidebar>small{color:#8fa59f;letter-spacing:2px;font-size:9px;margin-left:40px}
+.sidebar-home-link{color:#b5c5bf;text-decoration:none;font-size:11px;margin:20px 14px 0}.sidebar-home-link:hover{color:white}
 .sidebar nav{display:grid;gap:7px;margin-top:48px}
 .sidebar nav button{border:0;background:transparent;color:#b5c5bf;padding:13px 14px;text-align:left;border-radius:5px;cursor:pointer;display:flex;align-items:center;gap:13px}
 .sidebar nav button i{font-style:normal;font-size:18px}
@@ -90,6 +91,7 @@ button,input,select,textarea{font:inherit}
 .dashboard{margin-left:0;padding:95px 20px 35px}
 .mobile-header{position:fixed;inset:0 0 auto 0;height:70px;background:white;display:flex;align-items:center;justify-content:space-between;padding:0 20px;z-index:19;border-bottom:1px solid var(--line)}
 .mobile-header button{border:1px solid var(--line);background:white;padding:8px 12px}
+.mobile-home-link{margin-left:auto;margin-right:12px;color:var(--ink);font-size:12px;font-weight:700;text-decoration:none}
 .stats{grid-template-columns:repeat(2,1fr)}
 .panel-grid{grid-template-columns:1fr}
 }
