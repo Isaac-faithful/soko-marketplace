@@ -75,5 +75,10 @@
 </div>
 <script src="merchant.js">
 </script>
+<script>
+// Keep a safe browser-back path even when the workspace was opened directly.
+if (history.length <= 1) history.pushState({sokoWorkspace:true}, "", location.href);
+addEventListener("popstate", () => { location.href = "index.html"; });
+</script>
 </body>
 </html>
