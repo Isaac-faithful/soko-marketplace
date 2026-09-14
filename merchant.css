@@ -118,3 +118,4 @@ button,input,select,textarea{font:inherit}
 @media(max-width:600px){.document-grid{grid-template-columns:1fr}}
 .stats .stat{cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}.stats .stat:hover,.stats .stat:focus-visible{transform:translateY(-3px);box-shadow:0 8px 20px rgba(24,57,47,.12);outline:2px solid var(--orange);outline-offset:2px}
 .empty .text-button{display:block;margin:14px auto 0}
+.stat::after{content:"Live total · updated from your store";display:block;margin-top:8px;color:var(--muted);font-size:10px}
