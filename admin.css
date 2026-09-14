@@ -2,4 +2,4 @@
 aside nav .side-link{display:block;color:#b4c2bd;padding:13px;text-decoration:none;font-size:13px;border-radius:4px}aside nav .side-link:hover,aside nav .side-link.active{background:#27463e;color:white}
  .table-head .sortable{cursor:pointer}.table-head .sortable:hover{color:var(--ink);text-decoration:underline}
 .empty button{display:block;margin:16px auto 0}
-.stat::after{content:"Live total · trends appear as history builds";display:block;margin-top:8px;color:var(--muted);font-size:10px}
+.stat::after{content:"Current total";display:block;margin-top:8px;color:var(--muted);font-size:10px}
