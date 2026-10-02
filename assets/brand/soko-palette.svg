@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Soko colour palette</title>
+  <desc id="desc">The eight core colours used throughout the Soko marketplace.</desc>
+  <rect width="1200" height="520" fill="#FBFAF6"/>
+  <text x="56" y="72" fill="#18392F" font-family="Manrope, Arial, sans-serif" font-size="38" font-weight="800">Soko colour palette</text>
+  <text x="56" y="108" fill="#6D7974" font-family="DM Sans, Arial, sans-serif" font-size="18">Warm, rooted and trustworthy.</text>
+  <g font-family="DM Sans, Arial, sans-serif">
+    <g transform="translate(56 150)"><rect width="250" height="132" rx="10" fill="#18392F"/><text x="18" y="92" fill="#FFFFFF" font-size="20" font-weight="700">Heritage Ink</text><text x="18" y="116" fill="#FFFFFF" font-size="16">#18392F</text></g>
+    <g transform="translate(334 150)"><rect width="250" height="132" rx="10" fill="#0D5A43"/><text x="18" y="92" fill="#FFFFFF" font-size="20" font-weight="700">Marketplace Green</text><text x="18" y="116" fill="#FFFFFF" font-size="16">#0D5A43</text></g>
+    <g transform="translate(612 150)"><rect width="250" height="132" rx="10" fill="#EE6A3B"/><text x="18" y="92" fill="#FFFFFF" font-size="20" font-weight="700">Soko Orange</text><text x="18" y="116" fill="#FFFFFF" font-size="16">#EE6A3B</text></g>
+    <g transform="translate(890 150)"><rect width="250" height="132" rx="10" fill="#D9ED91"/><text x="18" y="92" fill="#18392F" font-size="20" font-weight="700">Fresh Lime</text><text x="18" y="116" fill="#18392F" font-size="16">#D9ED91</text></g>
+    <g transform="translate(56 310)"><rect width="250" height="132" rx="10" fill="#FBFAF6" stroke="#DFE2DC"/><text x="18" y="92" fill="#18392F" font-size="20" font-weight="700">Soko Cream</text><text x="18" y="116" fill="#6D7974" font-size="16">#FBFAF6</text></g>
+    <g transform="translate(334 310)"><rect width="250" height="132" rx="10" fill="#6D7974"/><text x="18" y="92" fill="#FFFFFF" font-size="20" font-weight="700">Muted Slate</text><text x="18" y="116" fill="#FFFFFF" font-size="16">#6D7974</text></g>
+    <g transform="translate(612 310)"><rect width="250" height="132" rx="10" fill="#DFE2DC"/><text x="18" y="92" fill="#18392F" font-size="20" font-weight="700">Border Mist</text><text x="18" y="116" fill="#18392F" font-size="16">#DFE2DC</text></g>
+    <g transform="translate(890 310)"><rect width="250" height="132" rx="10" fill="#FFFFFF" stroke="#DFE2DC"/><text x="18" y="92" fill="#18392F" font-size="20" font-weight="700">White</text><text x="18" y="116" fill="#6D7974" font-size="16">#FFFFFF</text></g>
+  </g>
+</svg>

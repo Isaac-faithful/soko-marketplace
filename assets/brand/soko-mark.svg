@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Soko brand mark</title>
+  <desc id="desc">A white lowercase s inside a warm orange circle.</desc>
+  <circle cx="64" cy="64" r="56" fill="#EE6A3B"/>
+  <text x="64" y="86" fill="#FFFFFF" font-family="Manrope, Arial, sans-serif" font-size="72" font-style="italic" font-weight="800" text-anchor="middle">s</text>
+</svg>

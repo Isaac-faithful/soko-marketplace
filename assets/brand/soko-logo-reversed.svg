@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="368" height="112" viewBox="0 0 368 112" role="img" aria-labelledby="title desc">
+  <title id="title">Soko reversed logo</title>
+  <desc id="desc">A white lowercase s inside an orange circle followed by the Soko wordmark in white.</desc>
+  <circle cx="56" cy="56" r="40" fill="#EE6A3B"/>
+  <text x="56" y="72" fill="#FFFFFF" font-family="Manrope, Arial, sans-serif" font-size="52" font-style="italic" font-weight="800" text-anchor="middle">s</text>
+  <text x="112" y="76" fill="#FFFFFF" font-family="Manrope, Arial, sans-serif" font-size="65" font-weight="800" letter-spacing="-3">Soko</text>
+</svg>
