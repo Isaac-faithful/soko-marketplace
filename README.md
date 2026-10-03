@@ -10,7 +10,13 @@ The backend uses Node's built-in HTTP, cryptography, and SQLite modules, so no d
 npm start
 ```
 
-Then open `http://localhost:4173`.
+Then open:
+
+- `http://localhost:4173/` for the public landing site
+- `http://localhost:4173/app/` for the marketplace web app
+- `http://localhost:4173/app/admin.html` for the administrator back office
+
+The public site and authenticated marketplace share one server, but have separate URL spaces. Previous app URLs such as `/shop`, `/auth.html`, and `/admin.html` redirect to their `/app/` equivalents so saved links continue to work.
 
 Do not use the old Python static-file command: it cannot run authentication, database, product, or order APIs.
 
@@ -22,7 +28,7 @@ Do not use the old Python static-file command: it cannot run authentication, dat
 - Buyer and merchant password: `SokoDemo123!`
 - Administrator password: `SokoAdmin123!`
 
-You can also create a new buyer or merchant account from `auth.html`.
+You can also create a new buyer or merchant account from `/app/auth.html`.
 
 ## What is included
 
@@ -145,7 +151,7 @@ Identity files are limited to PDF, JPG, or PNG under 5 MB. Soko encrypts each fi
 
 ## Notifications and development email
 
-Buyers, merchants, and administrators share an authenticated notification centre at `/notifications.html`. It provides unread state, mark-one and mark-all-read operations, and email preferences for orders, shipping, account updates, and optional marketing. Marketing email is disabled by default.
+Buyers, merchants, and administrators share an authenticated notification centre at `/app/notifications.html`. It provides unread state, mark-one and mark-all-read operations, and email preferences for orders, shipping, account updates, and optional marketing. Marketing email is disabled by default.
 
 Payment confirmation, new paid orders, dispatch review, verified collection, merchant verification, payout changes, disputes, and low stock generate idempotent notifications. Database event keys prevent webhook or action retries from creating duplicates. Email-enabled notifications enter the `email_outbox` table with a simulated status; administrators can inspect the development outbox through `/api/admin/email-outbox`. Messages deliberately exclude merchant commission, identity documents, and complete payout-account details. Connect this outbox to a transactional email provider before production.
 
@@ -153,7 +159,7 @@ The email adapter supports Resend through `EMAIL_PROVIDER=resend`, `RESEND_API_K
 
 ## Returns, cancellations, and refunds
 
-The shared `/returns.html` workspace gives buyers, merchants, and administrators role-specific case actions. Buyer cancellation is restricted to orders that have not entered preparation. Returns can be requested after dispatch, merchants receive a configurable response deadline, buyers can attach evidence and return tracking, and Soko records the final decision in the audit trail.
+The shared `/app/returns.html` workspace gives buyers, merchants, and administrators role-specific case actions. Buyer cancellation is restricted to orders that have not entered preparation. Returns can be requested after dispatch, merchants receive a configurable response deadline, buyers can attach evidence and return tracking, and Soko records the final decision in the audit trail.
 
 Opening a case immediately places the merchant settlement on hold. Refund decisions keep product and delivery amounts separate: commission is reversed proportionally only against refunded product value, while approved delivery refunds pass through in full. Amounts are checked against the original order allocation, stock restoration is idempotent, duplicate cases and refunds are blocked, and a repeated admin decision cannot issue a second refund. The default return window is seven days and the merchant response deadline is 48 hours; administrators can change both in the returns workspace.
 
@@ -165,7 +171,7 @@ Buyers can confirm receipt through `/api/buyer/orders/:orderId/confirm-delivery`
 
 ## Security controls
 
-The `/security.html` centre provides TOTP authenticator MFA, signed-in device review, session revocation, and an administrator risk queue. Login failures are recorded and temporarily lock an account after repeated attempts; API requests are rate-limited by source and route class. New accounts require email verification, and password recovery uses short-lived, single-use tokens (development mode displays the token; production should deliver it by email).
+The `/app/security.html` centre provides TOTP authenticator MFA, signed-in device review, session revocation, and an administrator risk queue. Login failures are recorded and temporarily lock an account after repeated attempts; API requests are rate-limited by source and route class. New accounts require email verification, and password recovery uses short-lived, single-use tokens (development mode displays the token; production should deliver it by email).
 
 Changing a merchant payout destination requires the current password and MFA when enabled, creates an 85-point risk event, and starts a 72-hour cooling-off period. Payout submission checks this cooldown, open high-risk events, and return/dispute holds. Administrators can resolve a risk as safe or confirmed fraud; confirmed fraud suspends the merchant. Session records include device and IP metadata, while security notifications avoid passwords, tokens, identity files, and complete bank details.
 
