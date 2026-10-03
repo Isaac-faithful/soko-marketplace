@@ -42,7 +42,7 @@ Review high-risk categories and active merchants periodically. Keep an audit log
 ### Failed or delayed delivery
 
 1. Open a support case linked to the order and place a payout hold if payout has not been released.
-2. Check address, delivery fee/service area, dispatch proof, tracking events, carrier reason and contact attempts.
+2. Check the buyer address, merchant-to-Soko dispatch proof, Soko receiving record, outbound tracking events, carrier reason and contact attempts.
 3. Ask the buyer and merchant for missing evidence; give the merchant normally **48 hours** to respond to a dispute.
 4. Choose an outcome: one re-delivery, return to merchant, replacement, partial refund or full refund.
 5. Record the decision, refund allocation, payout action and customer notification. Close only after the buyer confirms receipt or the refund is complete.
@@ -65,7 +65,15 @@ Review high-risk categories and active merchants periodically. Keep an audit log
 
 ## Minimum case record
 
-`case_id`, `order_id`, buyer, merchant, opened_at, issue type, evidence links, carrier events, merchant response, decision maker, decision, product refund, delivery refund, commission reversal, payout status, notifications sent, and closed_at.
+`case_id`, `order_id`, buyer, merchant, opened_at, issue type, evidence links, inbound carrier events, Soko receiving record, outbound carrier events, merchant response, decision maker, decision, product refund, delivery refund, commission reversal, payout status, notifications sent, and closed_at.
+
+## Soko-managed fulfilment
+
+1. After payment confirmation, the merchant prepares and labels the order with the Soko order reference.
+2. The merchant sends the parcel to the assigned Soko fulfilment office and records the inbound carrier, tracking, proof and estimated office arrival. The merchant must not send the order directly to the buyer.
+3. Soko staff physically receive the parcel, check the reference, package count and visible condition, then record a receiving note. Merchant settlement is eligible only after this check-in and the normal payment, dispute and risk controls pass.
+4. Soko selects the outbound carrier, dispatches the parcel to the buyer, and records the buyer-facing tracking link and estimated delivery date.
+5. From Soko office receipt onward, Soko owns carrier coordination and buyer delivery updates. Failed outbound delivery returns to Soko, not directly to the merchant, unless support records another decision.
 
 ## Before launch
 

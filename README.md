@@ -64,7 +64,7 @@ You can also create a new buyer or merchant account from `/app/auth.html`.
 - Double-entry payment ledger and reconciliation balances
 - Merchant-defined destination delivery shown only at checkout
 - Private merchant commission agreements applying only to product value
-- Dispatch-triggered merchant payout submissions
+- Soko-office-receipt-triggered merchant payout submissions
 - Duplicate-confirmation and duplicate-payout protection
 - Original locally hosted product photography
 - Search and country/category catalogue filters
@@ -85,7 +85,7 @@ Products and payments remain sample data. Accounts and records now use a real lo
 
 The checkout deliberately uses demonstration collection details. Buyers are assumed to already hold NGN, GHS, or KES; Soko performs no conversion. For database products, the backend first creates an `Awaiting payment` order with a unique reference. “Simulate provider confirmation” sends an idempotent development-provider event; it never moves real money.
 
-Buyers see only product value, merchant-defined delivery, and the resulting total. Soko commission is private, applies only to product value, and remains unset until agreed with a merchant. Merchant settlement is the product value minus the agreed commission, plus delivery. Dispatch creates one merchant payout submission even when the dispatch request is repeated. In production, collection, safeguarding, and settlement must be performed by appropriately licensed payment partners.
+Buyers see only product value, merchant-defined delivery, and the resulting total. Soko commission is private, applies only to product value, and remains unset until agreed with a merchant. Merchant settlement is the product value minus the agreed commission, plus delivery. The merchant sends the parcel to the assigned Soko fulfilment office; confirmed office receipt creates one merchant payout submission even when the receiving action is repeated. Soko then becomes responsible for selecting the outbound carrier, adding buyer-facing tracking and delivering the parcel. In production, collection, safeguarding, and settlement must be performed by appropriately licensed payment partners.
 
 ## Backend structure
 
@@ -137,11 +137,11 @@ Soko verifies `x-paystack-signature` using HMAC SHA-512 before processing any we
 
 Automatic refunds are allowed only before merchant payout submission. Repeated refund requests are idempotent. Once settlement has been submitted, Soko blocks automatic refunding until the merchant payout is recovered or reversed.
 
-## Verified fulfilment and payout gate
+## Soko-managed fulfilment and payout gate
 
-Merchant fulfilment and settlement are deliberately separate. A merchant can prepare an order, mark it ready for collection, and submit a carrier, tracking number, public tracking link, collection-proof link, and estimated delivery date. This creates a shipment awaiting Soko verification; it does not create a payout.
+Merchant fulfilment and buyer delivery are deliberately separate. A merchant prepares an order, marks it ready for the Soko office, and submits the inbound carrier, tracking number, dispatch-proof link and estimated office-arrival date. This creates an inbound shipment awaiting physical receipt by Soko; it does not create a payout.
 
-An administrator must verify carrier collection in the Trust Console. The server permits settlement only when the underlying payment is confirmed, the order has no open dispute, and the shipment is awaiting verification. Verification is audit-logged, creates a buyer-visible tracking event, moves the order to `In transit`, and submits one idempotent merchant payout. Repeating the verification cannot create a second payout.
+An administrator must check the parcel into the Soko office in the Trust Console. The server permits settlement only when the underlying payment is confirmed, the order has no open dispute, and the inbound parcel is awaiting Soko receipt. Receiving is audit-logged, creates buyer and merchant updates, moves the order to `At Soko office`, and submits one idempotent merchant payout. Repeating the receiving action cannot create a second payout. An administrator then records Soko’s outbound carrier and buyer-facing tracking; only that action moves the order to `In transit`.
 
 ## Merchant identity onboarding
 
@@ -153,7 +153,7 @@ Identity files are limited to PDF, JPG, or PNG under 5 MB. Soko encrypts each fi
 
 Buyers, merchants, and administrators share an authenticated notification centre at `/app/notifications.html`. It provides unread state, mark-one and mark-all-read operations, and email preferences for orders, shipping, account updates, and optional marketing. Marketing email is disabled by default.
 
-Payment confirmation, new paid orders, dispatch review, verified collection, merchant verification, payout changes, disputes, and low stock generate idempotent notifications. Database event keys prevent webhook or action retries from creating duplicates. Email-enabled notifications enter the `email_outbox` table with a simulated status; administrators can inspect the development outbox through `/api/admin/email-outbox`. Messages deliberately exclude merchant commission, identity documents, and complete payout-account details. Connect this outbox to a transactional email provider before production.
+Payment confirmation, new paid orders, merchant-to-Soko dispatch, Soko office receipt, Soko-to-buyer dispatch, merchant verification, payout changes, disputes, and low stock generate idempotent notifications. Database event keys prevent webhook or action retries from creating duplicates. Email-enabled notifications enter the `email_outbox` table with a simulated status; administrators can inspect the development outbox through `/api/admin/email-outbox`. Messages deliberately exclude merchant commission, identity documents, and complete payout-account details. Connect this outbox to a transactional email provider before production.
 
 The email adapter supports Resend through `EMAIL_PROVIDER=resend`, `RESEND_API_KEY`, and `EMAIL_FROM`. A background flush runs after API requests, sends up to ten queued messages, records provider failures, and retries each message up to five times. Administrators can manually flush with `POST /api/admin/email-outbox/flush`. Development mode never sends network email and leaves records marked `simulated`.
 
@@ -165,7 +165,7 @@ Opening a case immediately places the merchant settlement on hold. Refund decisi
 
 ## Final-mile delivery lifecycle
 
-Shipments support `awaiting_verification`, `collected_verified`, `in_transit`, `customs`, `out_for_delivery`, `delivered`, `delivery_failed`, and `returned`. Administrators can record carrier scans through the protected shipment-status endpoint, while carriers can send signed HMAC-SHA256 updates to `/api/webhooks/carrier` using `CARRIER_WEBHOOK_SECRET`. Carrier collection must be verified before later delivery statuses are accepted.
+Shipments support `awaiting_soko_receipt`, `received_at_soko`, `in_transit`, `customs`, `out_for_delivery`, `delivered`, `delivery_failed`, and `returned`. Administrators receive the merchant parcel at Soko, create the outbound buyer shipment, and can record later carrier scans through the protected shipment-status endpoint. Outbound carriers can send signed HMAC-SHA256 updates to `/api/webhooks/carrier` using `CARRIER_WEBHOOK_SECRET`. Soko office receipt is required before buyer dispatch, and buyer dispatch is required before later delivery statuses are accepted.
 
 Buyers can confirm receipt through `/api/buyer/orders/:orderId/confirm-delivery`. Soko records `delivered_at`, adds a tracking event, updates the order to `Delivered`, and measures the return window from delivery time.
 
